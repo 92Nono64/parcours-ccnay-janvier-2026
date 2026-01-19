@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme Club 2026</title>
+
+    <style>
+        /* === STYLE GÉNÉRAL === */
+        body { font-family: 'Segoe UI', sans-serif; background: #eef2f3; margin: 0; padding: 15px 10px; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; }
+
+        header { text-align: center; margin-bottom: 15px; }
+        .logo-img { max-height: 90px; display: block; margin: 0 auto 5px auto; }
+        h1 { color: #2c3e50; margin: 0; font-size: 1.6rem; text-transform: uppercase; }
+
+        /* === MENU COMPACT === */
+        .tabs-wrapper {
+            background: #fff; padding: 12px 5px; border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; text-align: center;
+        }
+        .tabs-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-bottom: 6px; }
+        .tabs-row:last-child { margin-bottom: 0; }
+        .tab-btn {
+            padding: 6px 0; width: 15%; min-width: 45px;
+            border: 1px solid #eee; background: #f8f9fa;
+            font-weight: 700; font-size: 0.75rem; color: #555;
+            cursor: pointer; border-radius: 15px; text-transform: uppercase; transition: 0.2s;
+        }
+        .tab-btn:hover { background: #e2e6ea; }
+        .tab-btn.active { background: #cc0000; color: white; border-color: #cc0000; box-shadow: 0 2px 4px rgba(204, 0, 0, 0.3); }
+
+        /* === WIDGET MÉTÉO AMÉLIORÉ === */
+        .weather-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+            border: 1px solid #d1d5db; border-radius: 12px;
+            padding: 15px; margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .weather-header {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 5px;
+        }
+        .weather-title { font-weight: 800; color: #555; text-transform: uppercase; font-size: 0.85rem; }
+        .weather-loc { color: #888; font-size: 0.8rem; }
+        
+        .weather-content { display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Partie Gauche : Actuel */
+        .weather-main { display: flex; align-items: center; gap: 10px; }
+        .weather-icon-big { font-size: 2.5rem; }
+        .weather-temp-big { font-size: 2rem; font-weight: 800; color: #333; line-height: 1; }
+        .weather-desc { font-size: 0.85rem; color: #666; font-weight: 600; margin-top: 2px; }
+
+        /* Partie Droite : Détails Vent/Pluie */
+        .weather-details { text-align: right; font-size: 0.85rem; color: #444; line-height: 1.4; }
+        .w-detail-row { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
+
+        /* === BORNE STYLE (Cartes Parcours) === */
+        .borne-card {
+            background-color: #fdfdfd; border: 1px solid #aaa;
+            border-radius: 40px 40px 8px 8px; box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            margin-bottom: 30px; overflow: hidden; animation: fadeIn 0.4s ease-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .borne-header {
+            background-color: #cc0000; color: white;
+            padding: 15px 10px 10px 10px; text-align: center;
+            font-weight: 900; font-size: 1.1rem; text-transform: uppercase;
+            border-bottom: 4px solid #990000;
+        }
+        .horaires-bandeau {
+            background: #2c3e50; color: #fff; text-align: center;
+            padding: 6px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase;
+        }
+
+        /* BOUTON CARTE COMMUN */
+        .map-section { padding: 12px; background: #f4f4f4; border-bottom: 1px solid #ddd; text-align: center; }
+        .btn-map-large {
+            display: block; width: 100%; padding: 10px 0; border-radius: 6px; 
+            background: white; color: #333; border: 2px solid #555;
+            text-decoration: none; font-weight: 800; font-size: 0.9rem; 
+            cursor: pointer; transition: 0.2s;
+        }
+        .btn-map-large:active { transform: scale(0.98); background: #eee; }
+
+        /* LIGNES CIRCUITS */
+        .circuit-row { padding: 12px 15px; border-bottom: 1px solid #eee; display: flex; flex-direction: column; gap: 8px; }
+        .circuit-row:last-child { border-bottom: none; }
+        
+        .tag { font-size: 0.7rem; font-weight: 900; color: white; padding: 3px 6px; border-radius: 4px; text-transform: uppercase; display: inline-block; margin-bottom: 4px; }
+        .tag-t1 { background: #cc0000; } .tag-t2 { background: #2980b9; }
+
+        .nom-parcours { font-size: 1rem; font-weight: 800; color: #222; margin-bottom: 2px; }
+        .infos-line { display: flex; justify-content: space-between; align-items: baseline; }
+        .lieux { font-size: 0.8rem; color: #555; font-style: italic; border-left: 3px solid #ddd; padding-left: 8px; margin-top: 4px; display: block; }
+        .deniv { font-size: 0.85rem; color: #d35400; font-weight: bold; }
+
+        /* BOUTONS GPX INDIVIDUELS */
+        .btn-gpx { 
+            text-align: center; padding: 8px 0; border-radius: 6px; 
+            text-decoration: none; font-weight: bold; font-size: 0.85rem; 
+            color: white; border: none; cursor: pointer; display: block;
+            transition: background 0.2s; text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        .btn-gpx-t1 { background-color: #29b6f6; } 
+        .btn-gpx-t1:hover { background-color: #039be5; }
+        .btn-gpx-t2 { background-color: #66bb6a; }
+        .btn-gpx-t2:hover { background-color: #43a047; }
+
+        /* POPUP CARTE */
+        #map-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; flex-direction: column; align-items: center; justify-content: center; }
+        #modal-frame { width: 95%; height: 80vh; border: 4px solid white; border-radius: 5px; background: white; object-fit: contain; }
+        #close-btn { background: white; border: none; padding: 12px 30px; border-radius: 50px; font-weight: bold; font-size: 1rem; margin-top: 20px; cursor: pointer; }
+        .empty-msg { text-align: center; padding: 30px; color: #888; font-style: italic; background: white; border-radius: 10px; font-size: 0.9rem;}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <img src="files/logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+        <h1>Sorties Club</h1>
+    </header>
+
+    <div class="tabs-wrapper">
+        <div class="tabs-row">
+            <button class="tab-btn active" onclick="chargerMois('janvier')" id="btn-janvier">Jan</button>
+            <button class="tab-btn" onclick="chargerMois('fevrier')" id="btn-fevrier">Fév</button>
+            <button class="tab-btn" onclick="chargerMois('mars')" id="btn-mars">Mar</button>
+            <button class="tab-btn" onclick="chargerMois('avril')" id="btn-avril">Avr</button>
+            <button class="tab-btn" onclick="chargerMois('mai')" id="btn-mai">Mai</button>
+            <button class="tab-btn" onclick="chargerMois('juin')" id="btn-juin">Juin</button>
+        </div>
+        <div class="tabs-row">
+            <button class="tab-btn" onclick="chargerMois('juillet')" id="btn-juillet">Juil</button>
+            <button class="tab-btn" onclick="chargerMois('aout')" id="btn-aout">Août</button>
+            <button class="tab-btn" onclick="chargerMois('septembre')" id="btn-septembre">Sep</button>
+            <button class="tab-btn" onclick="chargerMois('octobre')" id="btn-octobre">Oct</button>
+            <button class="tab-btn" onclick="chargerMois('novembre')" id="btn-novembre">Nov</button>
+            <button class="tab-btn" onclick="chargerMois('decembre')" id="btn-decembre">Déc</button>
+        </div>
+    </div>
+
+    <div class="weather-card" id="weather-widget">
+        <div class="weather-header">
+            <span class="weather-title">Météo en direct</span>
+            <span class="weather-loc">📍 Nay, FR</span>
+        </div>
+        
+        <div id="weather-loading" style="text-align:center; color:#888; padding:10px;">Chargement météo...</div>
+        
+        <div class="weather-content" id="weather-data" style="display:none;">
+            <div class="weather-main">
+                <div class="weather-icon-big" id="w-icon">⛅</div>
+                <div>
+                    <div class="weather-temp-big" id="w-temp">--°</div>
+                    <div class="weather-desc" id="w-desc">--</div>
+                </div>
+            </div>
+            <div class="weather-details">
+                <div class="w-detail-row">
+                    <span>Vent</span> <b id="w-wind">-- km/h</b> <span id="w-dir">⬇</span>
+                </div>
+                <div class="w-detail-row">
+                    <span>Pluie (Jour)</span> <b id="w-rain" style="color:#2980b9;">-- mm</b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="liste-parcours"></div>
+</div>
+
+<div id="map-modal">
+    <iframe id="modal-frame" src="" frameborder="0"></iframe>
+    <button id="close-btn" onclick="closeMap()">FERMER</button>
+</div>
+
+<script>
+    // =================================================================
+    // CONFIGURATION DES PARCOURS
+    // =================================================================
+    const programmeAnnuel = {
+        
+        janvier: [
+            {
+                weekend: "Samedi 03 & Dimanche 04 Janvier",
+                idCarteVisu: "s1-t1.jpg", 
+                t1: { 
+                    nom: "Parcours 1", km: "56 km", dplus: "D+ 718m", 
+                    lieux: "Nay, Igon, Asson, Bruges, TAD route du Boala, TAG D287, TAD Les Pindats, Dir Arros-Nay, TAG 322, Vallée Heureuse, Mazères, Aressy, Assat, Bordes, Mirepeix, Nay",
+                    lienGPX: "files/s1-t1.gpx" 
+                },
+                t2: { 
+                    nom: "Parcours 2", km: "47 km", dplus: "D+ 713m", 
+                    lieux: "(*), D724 Chapelle de Pardies-Piétat, TAD Pardies-Pietat, Baliros, Assat et retour commun",
+                    lienGPX: "files/s1-t2.gpx"
+                }
+            },
+            {
+                weekend: "Samedi 10 & Dimanche 11 Janvier",
+                idCarteVisu: "s2-t1.jpg", 
+                t1: { 
+                    nom: "Parcours 1", km: "64 km", dplus: "D+ 491m", 
+                    lieux: "Nay, Asson, (*), Croix de Hauteurs, (*), Lestelle, Montaut, Coarraze, Bénéjacq, Angaïs, Ousse, Idron, Bizanos, Mazères, Baliros, Nay",
+                    lienGPX: "files/s2-t1.gpx" 
+                },
+                t2: { 
+                    nom: "Parcours 2", km: "59 km", dplus: "D+ 351m", 
+                    lieux: "Igon, Lestelle et itinéraire commun",
+                    lienGPX: "files/s2-t2.gpx"
+                }
+            },
+            {
+                weekend: "Samedi 17 & Dimanche 18 Janvier",
+                idCarteVisu: "s3-t1.jpg", 
+                t1: { 
+                    nom: "Parcours 1", km: "67 km", dplus: "D+ 648m", 
+                    lieux: "Nay, Bénéjacq, Ossun, (*), Juillan, Louey, Lanne, Adé, Bartrès, Loubajac, Peyrouse, Saint Pé, Lestelle, Igon, Coarraze et Nay",
+                    lienGPX: "files/s3-t1.gpx" 
+                },
+                t2: { 
+                    nom: "Parcours 2", km: "59 km", dplus: "D+ 640m", 
+                    lieux: "(*) Adé et retour commun Nay",
+                    lienGPX: "files/s3-t2.gpx"
+                }
+            },
+            {
+                weekend: "Samedi 24 & Dimanche 25 Janvier",
+                idCarteVisu: "s4-t1.jpg", 
+                t1: { 
+                    nom: "Parcours 1", km: "65 km", dplus: "D+ 689m", 
+                    lieux: "Nay, Asson, La bascule, Chemin de Brune, (*), TAD, Sarramayou, Bruges, chemin du Boila, chemin de Prade, Route des Labassères, Arros-Nay, Baliros, Assat, Ousse, Nousty, Gomer, Lucgarier, Lagos, Bénéjacq, Nay",
+                    lienGPX: "files/s4-t1.gpx" 
+                },
+                t2: { 
+                    nom: "Parcours 2", km: "61 km", dplus: "D+ 565m", 
+                    lieux: "(*)Route du zoo, TAG D35, Bruges et retour commun",
+                    lienGPX: "files/s4-t2.gpx"
+                }
+            },
+            {
+                weekend: "Samedi 31 Jan & Dimanche 01 Fev",
+                idCarteVisu: "s5-t1.jpg", 
+                t1: { 
+                    nom: "Parcours 1", km: "74 km", dplus: "D+ 733m", 
+                    lieux: "Nay, Angais, Ousse, Morlaas, Gabaston, Lespourcy, Sedze-Maubecq, Bédeille, (*), Escaunets, Ponson-Dessus, Aast, Gardères, Luquet, Espoey, Lagos, Mirepeix, Nay",
+                    lienGPX: "files/s5-t1.gpx" 
+                },
+                t2: { 
+                    nom: "Parcours 2", km: "65 km", dplus: "D+ 644m", 
+                    lieux: "(*), Séron, Gardères et retour commun",
+                    lienGPX: "files/s5-t2.gpx"
+                }
+            }
+        ],
+
+        fevrier: [
+            {
+                weekend: "Samedi 07 & Dimanche 08 Fév",
+                idCarteVisu: "LX6m39axGx", 
+                t1: { 
+                    nom: "Parcours #098", km: "67 km", dplus: "D+ 550m", lieux: "Nay, Mirepeix, Sendets, Ouillon...",
+                    lienGPX: "https://www.visugpx.com/DZdNBb98zZ?t=1" 
+                },
+                t2: { 
+                    nom: "Parcours #098", km: "61 km", dplus: "D+ 450m", lieux: "Nay, Espoey, Lagos, Bénéjacq...",
+                    lienGPX: "https://www.visugpx.com/DZdNBb98zZ?t=2"
+                }
+            },
+            {
+                weekend: "Samedi 14 & Dimanche 15 Fév",
+                idCarteVisu: "DZdNBb98zZ", 
+                t1: { 
+                    nom: "Parcours #012", km: "65 km", dplus: "D+ 600m", lieux: "Nay, Gelos, Laroin, Aubertin...",
+                    lienGPX: "https://www.visugpx.com/DZdNBb98zZ?t=1"
+                },
+                t2: { 
+                    nom: "Parcours #012", km: "55 km", dplus: "D+ 500m", lieux: "Nay, Gelos, Gan et retour commun",
+                    lienGPX: "https://www.visugpx.com/DZdNBb98zZ?t=2"
+                }
+            },
+            {
+                weekend: "Samedi 21 & Dimanche 22 Fév",
+                idCarteVisu: "SBK0EGKdcJ", 
+                t1: { 
+                    nom: "Parcours #042", km: "75 km", dplus: "D+ 650m", lieux: "Nay, Montaut, Pontacq, Ger...",
+                    lienGPX: "https://www.visugpx.com/SBK0EGKdcJ?t=1"
+                },
+                t2: { 
+                    nom: "Parcours #042", km: "68 km", dplus: "D+ 550m", lieux: "Aast, Gardères, Eslourenties...",
+                    lienGPX: "https://www.visugpx.com/SBK0EGKdcJ?t=2"
+                }
+            },
+            {
+                weekend: "Samedi 28 Fév & Dimanche 01 Mar",
+                idCarteVisu: "GRw87MTBC8", 
+                t1: { 
+                    nom: "Parcours #016", km: "74 km", dplus: "D+ 800m", lieux: "Nay, Asson, Bruges, Louvie...",
+                    lienGPX: "https://www.visugpx.com/GRw87MTBC8?t=1"
+                },
+                t2: { 
+                    nom: "Parcours #016", km: "64 km", dplus: "D+ 600m", lieux: "Igon, Coarraze, Nay...",
+                    lienGPX: "https://www.visugpx.com/GRw87MTBC8?t=2"
+                }
+            }
+        ],
+
+        mars: [], avril: [], mai: [], juin: [],
+        juillet: [], aout: [], septembre: [], octobre: [], novembre: [], decembre: []
+    };
+
+    // ===========================================
+    // MOTEUR MÉTÉO (Nouvelle Version)
+    // ===========================================
+    
+    // Interprétation des codes météo WMO
+    function getWeatherInfo(code) {
+        const codes = {
+            0: { label: "Ensoleillé", icon: "☀️" },
+            1: { label: "Peu nuageux", icon: "🌤️" },
+            2: { label: "Nuageux", icon: "☁️" },
+            3: { label: "Couvert", icon: "☁️" },
+            45: { label: "Brouillard", icon: "🌫️" },
+            48: { label: "Givre", icon: "❄️" },
+            51: { label: "Bruine légère", icon: "🌦️" },
+            53: { label: "Bruine", icon: "🌦️" },
+            61: { label: "Pluie faible", icon: "🌧️" },
+            63: { label: "Pluie", icon: "🌧️" },
+            65: { label: "Forte pluie", icon: "⛈️" },
+            71: { label: "Neige", icon: "🌨️" },
+            80: { label: "Averses", icon: "🌦️" },
+            95: { label: "Orage", icon: "⚡" },
+            96: { label: "Orage + Grêle", icon: "⛈️" }
+        };
+        return codes[code] || { label: "Variable", icon: "???" };
+    }
+
+    // Appel API Open-Meteo (Nay)
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=43.18&longitude=-0.26&current_weather=true&daily=precipitation_sum,weathercode&timezone=auto')
+    .then(r => r.json())
+    .then(d => {
+        const current = d.current_weather;
+        const daily = d.daily;
+
+        const temp = Math.round(current.temperature);
+        const wind = Math.round(current.windspeed);
+        const codeInfo = getWeatherInfo(current.weathercode);
+        const rainToday = daily.precipitation_sum[0]; // Pluie du jour en mm
+
+        // Affichage
+        document.getElementById('weather-loading').style.display = 'none';
+        document.getElementById('weather-data').style.display = 'flex';
+
+        document.getElementById('w-temp').textContent = temp + "°";
+        document.getElementById('w-icon').textContent = codeInfo.icon;
+        document.getElementById('w-desc').textContent = codeInfo.label;
+        document.getElementById('w-wind').textContent = wind + " km/h";
+        document.getElementById('w-rain').textContent = rainToday + " mm";
+
+        // Rotation flèche vent
+        const windDeg = current.winddirection;
+        const dirSpan = document.getElementById('w-dir');
+        dirSpan.style.display = "inline-block";
+        dirSpan.style.transform = `rotate(${windDeg}deg)`;
+    })
+    .catch(err => {
+        console.error(err);
+        document.getElementById('weather-loading').textContent = "Météo indisponible.";
+    });
+
+
+    // ===========================================
+    // GESTION DU PROGRAMME
+    // ===========================================
+    function afficherProgramme(data) {
+        const container = document.getElementById('liste-parcours');
+        container.innerHTML = ""; 
+
+        if (!data || data.length === 0) {
+            container.innerHTML = "<div class='empty-msg'>Le programme de ce mois n'est pas encore disponible.</div>";
+            return;
+        }
+
+        data.forEach(item => {
+            // DÉTECTION TYPE DE CARTE : ID VisuGPX ou Image Locale
+            let linkMap = "";
+            if(item.idCarteVisu.includes(".")) {
+                // C'est un fichier (ex: s1-t1.jpg)
+                linkMap = "files/" + item.idCarteVisu;
+            } else {
+                // C'est un ID VisuGPX
+                linkMap = `https://www.visugpx.com/${item.idCarteVisu}?iframe&maponly`;
+            }
+
+            const html = `
+            <div class="borne-card">
+                <div class="borne-header">${item.weekend}</div>
+                <div class="horaires-bandeau">Départs : Samedi 13h30 & Dimanche 09h00</div>
+                
+                <div class="map-section">
+                    <button class="btn-map-large" onclick="openMap('${linkMap}')">🗺️ VOIR LA CARTE</button>
+                </div>
+
+                <div class="circuit-row">
+                    <div class="infos-line">
+                        <div><span class="tag tag-t1">T1</span> <b style="font-size:1.1rem">${item.t1.km}</b></div>
+                        <span class="deniv">⛰️ ${item.t1.dplus}</span>
+                    </div>
+                    <div class="nom-parcours">${item.t1.nom}</div>
+                    <div class="lieux">📍 ${item.t1.lieux}</div>
+                    <a href="${item.t1.lienGPX}" class="btn-gpx btn-gpx-t1" target="_blank" download>📥 TÉLÉCHARGER GPX T1</a>
+                </div>
+
+                <div class="circuit-row">
+                    <div class="infos-line">
+                        <div><span class="tag tag-t2">T2</span> <b style="font-size:1.1rem">${item.t2.km}</b></div>
+                        <span class="deniv">⛰️ ${item.t2.dplus}</span>
+                    </div>
+                    <div class="nom-parcours">${item.t2.nom}</div>
+                    <div class="lieux">📍 ${item.t2.lieux}</div>
+                    <a href="${item.t2.lienGPX}" class="btn-gpx btn-gpx-t2" target="_blank" download>📥 TÉLÉCHARGER GPX T2</a>
+                </div>
+            </div>`;
+            container.innerHTML += html;
+        });
+    }
+
+    function chargerMois(mois) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        const btnActif = document.getElementById('btn-' + mois);
+        if(btnActif) btnActif.classList.add('active');
+
+        afficherProgramme(programmeAnnuel[mois]);
+    }
+
+    // Au démarrage : Charger Janvier
+    chargerMois('janvier');
+
+    // Gestion Carte
+    const modal = document.getElementById('map-modal');
+    const modalFrame = document.getElementById('modal-frame');
+
+    function openMap(src) {
+        modal.style.display = "flex";
+        modalFrame.src = src;
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeMap() {
+        modal.style.display = "none";
+        modalFrame.src = "";
+        document.body.style.overflow = "auto";
+    }
+</script>
+
+</body>
+</html>
