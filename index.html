@@ -112,8 +112,8 @@
         <div class="tabs-row">
             <button class="tab-btn" onclick="chargerMois('janvier')" id="btn-janvier">Jan</button>
             <button class="tab-btn" onclick="chargerMois('fevrier')" id="btn-fevrier">Fév</button>
-            <button class="tab-btn active" onclick="chargerMois('mars')" id="btn-mars">Mar</button>
-            <button class="tab-btn" onclick="chargerMois('avril')" id="btn-avril">Avr</button>
+            <button class="tab-btn" onclick="chargerMois('mars')" id="btn-mars">Mar</button>
+            <button class="tab-btn active" onclick="chargerMois('avril')" id="btn-avril">Avr</button>
             <button class="tab-btn" onclick="chargerMois('mai')" id="btn-mai">Mai</button>
             <button class="tab-btn" onclick="chargerMois('juin')" id="btn-juin">Juin</button>
         </div>
@@ -194,35 +194,69 @@ try {
             }
         ],
 
-        // === MOIS DE MARS : REMPLACEZ LES 'XXX' PAR LES DÉNIVELÉS ===
         mars: [
             {
                 weekend: "Samedi 07 & Dimanche 08 Mar",
                 idCarteVisu: "R3If8zTbqU",
-                t1: { nom: "Parcours #036", km: "79 km", dplus: "D+ 888", lieux: "Nay, St Pé, Rieulhes, Lourdes, Ségus, Aspin...", lienGPX: "https://www.visugpx.com/download.php?id=R3If8zTbqU" },
-                t2: { nom: "Parcours #036", km: "70 km", dplus: "D+ 721", lieux: "Lourdes et retour commun", lienGPX: "https://www.visugpx.com/download.php?id=R3If8zTbqU" }
+                t1: { nom: "Parcours #036", km: "79 km", dplus: "D+ 912m", lieux: "Nay, St Pé, Rieulhes, Lourdes, Ségus, Aspin...", lienGPX: "https://www.visugpx.com/download.php?id=R3If8zTbqU" },
+                t2: { nom: "Parcours #036", km: "70 km", dplus: "D+ 650m", lieux: "Lourdes et retour commun", lienGPX: "https://www.visugpx.com/download.php?id=R3If8zTbqU" }
             },
             {
                 weekend: "Samedi 14 & Dimanche 15 Mar",
                 idCarteVisu: "S9JpatYuc4",
-                t1: { nom: "Parcours #091", km: "77 km", dplus: "D+ 1049", lieux: "Nay, Arros-Nay, Pardies Pietat, Gan...", lienGPX: "https://www.visugpx.com/download.php?id=S9JpatYuc4" },
-                t2: { nom: "Parcours #091", km: "70 km", dplus: "D+ 831", lieux: "Rébénacq, Gan et retour commun", lienGPX: "https://www.visugpx.com/download.php?id=S9JpatYuc4" }
+                t1: { nom: "Parcours #091", km: "77 km", dplus: "D+ 840m", lieux: "Nay, Arros-Nay, Pardies Pietat, Gan...", lienGPX: "https://www.visugpx.com/download.php?id=S9JpatYuc4" },
+                t2: { nom: "Parcours #091", km: "70 km", dplus: "D+ 750m", lieux: "Rébénacq, Gan et retour commun", lienGPX: "https://www.visugpx.com/download.php?id=S9JpatYuc4" }
             },
             {
                 weekend: "Samedi 21 & Dimanche 22 Mar",
                 idCarteVisu: "ngpiRawnzC",
-                t1: { nom: "Parcours #093", km: "84 km", dplus: "D+ 1020", lieux: "Nay, St Jo, Les Labassères, Arros-Nay, Baliros...", lienGPX: "https://www.visugpx.com/download.php?id=ngpiRawnzC" },
-                t2: { nom: "Parcours #093", km: "75 km", dplus: "D+ 800", lieux: "Asson et Nay", lienGPX: "https://www.visugpx.com/download.php?id=ngpiRawnzC" }
+                t1: { nom: "Parcours #093", km: "84 km", dplus: "D+ 920m", lieux: "Nay, St Jo, Les Labassères, Arros-Nay, Baliros...", lienGPX: "https://www.visugpx.com/download.php?id=ngpiRawnzC" },
+                t2: { nom: "Parcours #093", km: "75 km", dplus: "D+ 810m", lieux: "Asson et Nay", lienGPX: "https://www.visugpx.com/download.php?id=ngpiRawnzC" }
             },
             {
                 weekend: "Samedi 28 & Dimanche 29 Mar",
                 idCarteVisu: "lFcq3wEfLm",
-                t1: { nom: "Parcours #070", km: "91 km", dplus: "D+ 1112", lieux: "Nay, Arros-Nay, Direction les Pindats...", lienGPX: "https://www.visugpx.com/download.php?id=lFcq3wEfLm" },
-                t2: { nom: "Parcours #070", km: "68 km", dplus: "D+ 929", lieux: "Herrere, Buzy, Arudy et retour commun", lienGPX: "https://www.visugpx.com/download.php?id=lFcq3wEfLm" }
+                t1: { nom: "Parcours #070", km: "91 km", dplus: "D+ 980m", lieux: "Nay, Arros-Nay, Direction les Pindats...", lienGPX: "https://www.visugpx.com/download.php?id=lFcq3wEfLm" },
+                t2: { nom: "Parcours #070", km: "68 km", dplus: "D+ 720m", lieux: "Herrere, Buzy, Arudy et retour commun", lienGPX: "https://www.visugpx.com/download.php?id=lFcq3wEfLm" }
             }
         ],
 
-        avril: [], mai: [], juin: [],
+        // === MOIS D'AVRIL ===
+        avril: [
+            {
+                weekend: "Samedi 04 & Dimanche 05 Avr",
+                idCarteVisu: "8COJ38y6fl",
+                t1: { nom: "Parcours #065", km: "71 km", dplus: "D+ 994m", lieux: "Nay, Pardies-Pietat, Gan, Route de Lasseube, quartier Miqueu...", lienGPX: "https://www.visugpx.com/download.php?id=8COJ38y6fl" },
+                t2: { nom: "Parcours #065", km: "65 km", dplus: "D+ 918m", lieux: "Aubertin, et retour commun", lienGPX: "https://www.visugpx.com/download.php?id=8COJ38y6fl" }
+            },
+            {
+                weekend: "Lundi 06 Avr",
+                idCarteVisu: "vTijxSCmNf",
+                horaires: "Départ : Lundi 09h00", // Horaire spécial personnalisé
+                // On ne met pas de t1 ici, seulement t2
+                t2: { nom: "Parcours #041", km: "57 km", dplus: "D+ 351m", lieux: "Morlaas, Bernadets et retour commun", lienGPX: "https://www.visugpx.com/download.php?id=vTijxSCmNf" }
+            },
+            {
+                weekend: "Samedi 11 & Dimanche 12 Avr",
+                idCarteVisu: "ur26JbAKKK",
+                t1: { nom: "Parcours #067", km: "82 km", dplus: "D+ 1044m", lieux: "Nay, Rd Pt 4Ch, Corraze, Montaut, Peyrouse, Loubajacq, Bartrés...", lienGPX: "https://www.visugpx.com/download.php?id=ur26JbAKKK" },
+                t2: { nom: "Parcours #067", km: "71 km", dplus: "D+ 739m", lieux: "Lourdes, Pont Neuf et retour commun", lienGPX: "https://www.visugpx.com/download.php?id=ur26JbAKKK" }
+            },
+            {
+                weekend: "Samedi 18 & Dimanche 19 Avr",
+                idCarteVisu: "lwoxpueKnF",
+                t1: { nom: "Parcours #092", km: "88 km", dplus: "D+ 823m", lieux: "Nay, Bénéjacq, Pontacq, Barzun, Rue du Bois, D42, Luquet...", lienGPX: "https://www.visugpx.com/download.php?id=lwoxpueKnF" },
+                t2: { nom: "Parcours #092", km: "80 km", dplus: "D+ 761m", lieux: "D129, Ger et retour commun", lienGPX: "https://www.visugpx.com/download.php?id=lwoxpueKnF" }
+            },
+            {
+                weekend: "Samedi 25 & Dimanche 26 Avr",
+                idCarteVisu: "QNE0owhyiN",
+                t1: { nom: "Parcours #040", km: "84 km", dplus: "D+ 1035m", lieux: "Nay, Bénéjacq, Pontacq, Loubajac, Peyrouse, Saint Pé, Lestelle...", lienGPX: "https://www.visugpx.com/download.php?id=QNE0owhyiN" },
+                t2: { nom: "Parcours #040", km: "75 km", dplus: "D+ 937m", lieux: "Lys, Haut de Lys et retour commun", lienGPX: "https://www.visugpx.com/download.php?id=QNE0owhyiN" }
+            }
+        ],
+
+        mai: [], juin: [],
         juillet: [], aout: [], septembre: [], octobre: [], novembre: [], decembre: []
     };
 
@@ -249,16 +283,15 @@ try {
 
         data.forEach(item => {
             const linkMap = `https://www.visugpx.com/${item.idCarteVisu}?iframe&maponly`;
+            
+            // Gestion des horaires personnalisés
+            const horairesText = item.horaires ? item.horaires : "Départs : Samedi 13h30 & Dimanche 09h00";
 
-            const html = `
-            <div class="borne-card">
-                <div class="borne-header">${item.weekend}</div>
-                <div class="horaires-bandeau">Départs : Samedi 13h30 & Dimanche 09h00</div>
-                
-                <div class="map-section">
-                    <button class="btn-map-large" onclick="openMap('${linkMap}')">🗺️ VOIR LA CARTE</button>
-                </div>
+            let t1Html = "";
+            let t2Html = "";
 
+            if (item.t1) {
+                t1Html = `
                 <div class="circuit-row">
                     <div class="infos-line">
                         <div><span class="tag tag-t1">T1</span> <b style="font-size:1.1rem">${item.t1.km}</b></div>
@@ -267,8 +300,11 @@ try {
                     <div class="nom-parcours">${item.t1.nom}</div>
                     <div class="lieux">📍 ${item.t1.lieux}</div>
                     <a href="${item.t1.lienGPX}" class="btn-gpx btn-gpx-t1" target="_blank">📥 TÉLÉCHARGER GPX T1</a>
-                </div>
+                </div>`;
+            }
 
+            if (item.t2) {
+                t2Html = `
                 <div class="circuit-row">
                     <div class="infos-line">
                         <div><span class="tag tag-t2">T2</span> <b style="font-size:1.1rem">${item.t2.km}</b></div>
@@ -277,8 +313,22 @@ try {
                     <div class="nom-parcours">${item.t2.nom}</div>
                     <div class="lieux">📍 ${item.t2.lieux}</div>
                     <a href="${item.t2.lienGPX}" class="btn-gpx btn-gpx-t2" target="_blank">📥 TÉLÉCHARGER GPX T2</a>
+                </div>`;
+            }
+
+            const html = `
+            <div class="borne-card">
+                <div class="borne-header">${item.weekend}</div>
+                <div class="horaires-bandeau">${horairesText}</div>
+                
+                <div class="map-section">
+                    <button class="btn-map-large" onclick="openMap('${linkMap}')">🗺️ VOIR LA CARTE</button>
                 </div>
+
+                ${t1Html}
+                ${t2Html}
             </div>`;
+            
             container.innerHTML += html;
         });
     }
@@ -291,8 +341,8 @@ try {
         afficherProgramme(programmeAnnuel[mois]);
     }
 
-    // Au démarrage : Charger Mars par défaut
-    chargerMois('mars');
+    // Au démarrage : Charger Avril par défaut
+    chargerMois('avril');
 
     const modal = document.getElementById('map-modal');
     const modalFrame = document.getElementById('modal-frame');
