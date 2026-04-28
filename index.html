@@ -148,9 +148,6 @@
 
 <script>
 try {
-    // =================================================================
-    // CONFIGURATION DES PARCOURS
-    // =================================================================
     const programmeAnnuel = {
         
         janvier: [
@@ -165,6 +162,18 @@ try {
                 idCarteVisu: "DZdNBb98zZ", 
                 t1: { nom: "Col du Soulor", km: "105 km", dplus: "D+ 1200m", lieux: "Nay > Arthez > Soulor", lienGPX: "https://www.visugpx.com/download.php?id=DZdNBb98zZ?t=1" },
                 t2: { nom: "Vallée de l'Ouzom", km: "80 km", dplus: "D+ 600m", lieux: "Nay > Ferrières", lienGPX: "https://www.visugpx.com/download.php?id=DZdNBb98zZ" }
+            },
+            {
+                weekend: "Samedi 18 & Dimanche 19 Jan",
+                idCarteVisu: "SBK0EGKdcJ", 
+                t1: { nom: "Plaine de Nay", km: "75 km", dplus: "D+ 650m", lieux: "Nay > Pontacq > Ger", lienGPX: "https://www.visugpx.com/download.php?id=SBK0EGKdcJ?t=1" },
+                t2: { nom: "Circuit Court", km: "60 km", dplus: "D+ 400m", lieux: "Nay > Igon > Coarraze", lienGPX: "https://www.visugpx.com/download.php?id=SBK0EGKdcJ" }
+            },
+            {
+                weekend: "Samedi 25 & Dimanche 26 Jan",
+                idCarteVisu: "GRw87MTBC8", 
+                t1: { nom: "Coteaux Sud", km: "82 km", dplus: "D+ 900m", lieux: "Nay > Asson > Bruges", lienGPX: "https://www.visugpx.com/download.php?id=GRw87MTBC8?t=1" },
+                t2: { nom: "Boucle Express", km: "65 km", dplus: "D+ 550m", lieux: "Nay > Mifaget > Louvie", lienGPX: "https://www.visugpx.com/download.php?id=GRw87MTBC8" }
             }
         ],
 
@@ -255,28 +264,31 @@ try {
             }
         ],
 
-        // === MOIS DE MAI ===
         mai: [
             {
                 weekend: "Samedi 02 & Dimanche 03 Mai",
+                horaires: "Départs : Samedi 13h30 & Dimanche 08h30",
                 idCarteVisu: "eNwtqVqnB2",
                 t1: { nom: "Parcours #076", km: "97 km", dplus: "D+ 771m", lieux: "Nay, Pardies-Pietat, Mazère, Laroin, Tarsacq...", lienGPX: "https://www.visugpx.com/eNwtqVqnB2?t=1" },
                 t2: { nom: "Parcours #076", km: "76 km", dplus: "D+ 703m", lieux: "Artiguelouve, Lacommande, Lasseube et retour commun", lienGPX: "https://www.visugpx.com/eNwtqVqnB2?t=2" }
             },
             {
                 weekend: "Samedi 09 & Dimanche 10 Mai",
+                horaires: "Départs : Samedi 13h30 & Dimanche 08h30",
                 idCarteVisu: "5HnYOLgaXk",
                 t1: { nom: "Parcours #033", km: "104 km", dplus: "D+ 1119m", lieux: "Nay, Lestelle, St Pé, Lourdes, Omex, Segus...", lienGPX: "https://www.visugpx.com/5HnYOLgaXk?t=1" },
                 t2: { nom: "Parcours #033", km: "102 km", dplus: "D+ 775m", lieux: "Lourdes, Lugagnan, Boo, Ayros-Arbouix...", lienGPX: "https://www.visugpx.com/5HnYOLgaXk?t=2" }
             },
             {
                 weekend: "Samedi 16 & Dimanche 17 Mai",
+                horaires: "Départs : Samedi 13h30 & Dimanche 08h30",
                 idCarteVisu: "es11USg8e8",
                 t1: { nom: "Parcours #081", km: "100 km", dplus: "D+ 1057m", lieux: "Nay, Arros-Nay, Pardies, Mazère, Rocade...", lienGPX: "https://www.visugpx.com/es11USg8e8?t=1" },
                 t2: { nom: "Parcours #081", km: "84 km", dplus: "D+ 651m", lieux: "Route du Laring, Lasseube et retour commun", lienGPX: "https://www.visugpx.com/es11USg8e8?t=2" }
             },
             {
                 weekend: "Samedi 23 & Dimanche 24 Mai",
+                horaires: "Départs : Samedi 13h30 & Dimanche 08h30",
                 idCarteVisu: "RA6RxATuNp",
                 t1: { nom: "Parcours #073", km: "91 km", dplus: "D+ 1422m", lieux: "Nay, Coarraze, Montaut, Segus, Ossen...", lienGPX: "https://www.visugpx.com/RA6RxATuNp?t=1" },
                 t2: { nom: "Parcours #073", km: "84 km", dplus: "D+ 1042m", lieux: "Lourdes, Lugagnan et retour commun", lienGPX: "https://www.visugpx.com/RA6RxATuNp?t=2" }
@@ -284,7 +296,7 @@ try {
             {
                 weekend: "Dimanche 31 Mai (Rando 300%)",
                 isOpenRunner: true,
-                horaires: "Randonnée Spéciale de la 300%",
+                horaires: "Départ Dimanche : 7h00-9h00 (Spécial 300%)",
                 t1: { nom: "La 300% - Grand", km: "109 km", dplus: "D+ 2200m", lieux: "Randonnée de la 300%", lienGPX: "https://www.openrunner.com/en/route-details/23564916", btnText: "🔗 OPENRUNNER 109km" },
                 t2: { nom: "La 300% - Moyen", km: "76 km", dplus: "D+ 1600m", lieux: "Randonnée de la 300%", lienGPX: "https://www.openrunner.com/en/route-details/23564961", btnText: "🔗 OPENRUNNER 76km" },
                 t3: { nom: "La 300% - Petit", km: "44 km", dplus: "D+ 700m", lieux: "Randonnée de la 300%", lienGPX: "https://www.openrunner.com/en/route-details/23525687", btnText: "🔗 OPENRUNNER 44km" }
@@ -293,10 +305,6 @@ try {
 
         juin: [], juillet: [], aout: [], septembre: [], octobre: [], novembre: [], decembre: []
     };
-
-    // ===========================================
-    // MOTEUR DU SITE
-    // ===========================================
 
     fetch('https://api.open-meteo.com/v1/forecast?latitude=43.18&longitude=-0.26&current_weather=true')
     .then(r => r.json())
@@ -380,7 +388,6 @@ try {
         afficherProgramme(programmeAnnuel[mois]);
     }
 
-    // Au démarrage : Charger Mai par défaut
     chargerMois('mai');
 
     const modal = document.getElementById('map-modal');
