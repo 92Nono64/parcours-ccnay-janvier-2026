@@ -115,8 +115,8 @@
             <button class="tab-btn" onclick="chargerMois('fevrier')" id="btn-fevrier">Fév</button>
             <button class="tab-btn" onclick="chargerMois('mars')" id="btn-mars">Mar</button>
             <button class="tab-btn" onclick="chargerMois('avril')" id="btn-avril">Avr</button>
-            <button class="tab-btn active" onclick="chargerMois('mai')" id="btn-mai">Mai</button>
-            <button class="tab-btn" onclick="chargerMois('juin')" id="btn-juin">Juin</button>
+            <button class="tab-btn" onclick="chargerMois('mai')" id="btn-mai">Mai</button>
+            <button class="tab-btn active" onclick="chargerMois('juin')" id="btn-juin">Juin</button>
         </div>
         <div class="tabs-row">
             <button class="tab-btn" onclick="chargerMois('juillet')" id="btn-juillet">Juil</button>
@@ -296,14 +296,45 @@ try {
             {
                 weekend: "Dimanche 31 Mai (Rando 300%)",
                 isOpenRunner: true,
-                horaires: "Départ Dimanche : 7h00-9h00 (Spécial 300%)",
+                horaires: "Départ Dimanche : 08h30 (Spécial 300%)",
                 t1: { nom: "La 300% - Grand", km: "109 km", dplus: "D+ 2200m", lieux: "Randonnée de la 300%", lienGPX: "https://www.openrunner.com/en/route-details/23564916", btnText: "🔗 OPENRUNNER 109km" },
                 t2: { nom: "La 300% - Moyen", km: "76 km", dplus: "D+ 1600m", lieux: "Randonnée de la 300%", lienGPX: "https://www.openrunner.com/en/route-details/23564961", btnText: "🔗 OPENRUNNER 76km" },
                 t3: { nom: "La 300% - Petit", km: "44 km", dplus: "D+ 700m", lieux: "Randonnée de la 300%", lienGPX: "https://www.openrunner.com/en/route-details/23525687", btnText: "🔗 OPENRUNNER 44km" }
             }
         ],
 
-        juin: [], juillet: [], aout: [], septembre: [], octobre: [], novembre: [], decembre: []
+        juin: [
+            {
+                weekend: "Samedi 06 & Dimanche 07 Juin",
+                horaires: "Départs : Samedi 13h30 & Dimanche 08h30",
+                idCarteVisu: "UU50uNk8cn",
+                t1: { nom: "Parcours #058", km: "104 km", dplus: "D+ 1100m", lieux: "Nay, Baliros, Mazères, Gelos, Jurançon, Laroin, Artiguelouve, Parbayse, Monein, Lucq de Béarn, Ledeuix, Estos, Lasseube, Rébénacq, Nay", lienGPX: "https://www.visugpx.com/download.php?id=UU50uNk8cn?t=1" },
+                t2: { nom: "Parcours #058", km: "100 km", dplus: "D+ 950m", lieux: "Gan et retour commun par itinéraire de la Trace 1", lienGPX: "https://www.visugpx.com/download.php?id=UU50uNk8cn?t=2" }
+            },
+            {
+                weekend: "Samedi 13 & Dimanche 14 Juin",
+                horaires: "Départs : Samedi 13h30 & Dimanche 08h30",
+                idCarteVisu: "lQYueNGcoB",
+                t1: { nom: "Parcours #082", km: "121 km", dplus: "D+ 1900m", lieux: "Nay, Coarraze, Lestelle, Lourdes, Argelès, Saint-Savin, Sireix, Estaing, Col des Bordères, Arrens, Aucun, Station Couraduque, Aucun, Lourdes, Nay", lienGPX: "https://www.visugpx.com/download.php?id=lQYueNGcoB?t=1" },
+                t2: { nom: "Parcours #082", km: "107 km", dplus: "D+ 1450m", lieux: "Argelès et retour commun sans la boucle des Bordères/Estaing", lienGPX: "https://www.visugpx.com/download.php?id=lQYueNGcoB?t=2" }
+            },
+            {
+                weekend: "Samedi 20 & Dimanche 21 Juin",
+                horaires: "Départs : Samedi 13h30 & Dimanche 08h30",
+                idCarteVisu: "pMKyBdpZMb",
+                t1: { nom: "Parcours #077", km: "105 km", dplus: "D+ 900m", lieux: "Nay, Lagos, Espoey, Luquet, Gardères, Aast, Ponson Dessus, St Lézer, Vic en Bigorre, Rabastens, Lescurry, Sabalos, Bordères, Ibos, Ossun, Pontacq, Nay", lienGPX: "https://www.visugpx.com/download.php?id=pMKyBdpZMb?t=1" },
+                t2: { nom: "Parcours #077", km: "81 km", dplus: "D+ 700m", lieux: "Montaner, Siarrouy, Lagarde, Oursbelille, Ibos et retour commun", lienGPX: "https://www.visugpx.com/download.php?id=pMKyBdpZMb?t=2" }
+            },
+            {
+                weekend: "Samedi 27 & Dimanche 28 Juin",
+                horaires: "Départs : Samedi 13h30 & Dimanche 08h30",
+                idCarteVisu: "81YUAe6fJg",
+                t1: { nom: "Parcours #059", km: "115 km", dplus: "D+ 2100m", lieux: "Lourdes, Lugagnan, Bo-Silhen, Préchac, Beaucens, Luz, Gèdre, Cirque de Troumouse, Gèdre, Luz, Soulom, Argelès, Agos, Lourdes", lienGPX: "https://www.visugpx.com/download.php?id=81YUAe6fJg?t=1" },
+                t2: { nom: "Parcours #059", km: "110 km", dplus: "D+ 1650m", lieux: "Lac des Gloriettes et retour commun par Luz et Argelès", lienGPX: "https://www.visugpx.com/download.php?id=81YUAe6fJg?t=2" }
+            }
+        ],
+
+        juillet: [], aout: [], septembre: [], octobre: [], novembre: [], decembre: []
     };
 
     fetch('https://api.open-meteo.com/v1/forecast?latitude=43.18&longitude=-0.26&current_weather=true')
@@ -388,7 +419,8 @@ try {
         afficherProgramme(programmeAnnuel[mois]);
     }
 
-    chargerMois('mai');
+    // Chargement par défaut sur Juin pour visualiser directement les changements
+    chargerMois('juin');
 
     const modal = document.getElementById('map-modal');
     const modalFrame = document.getElementById('modal-frame');
